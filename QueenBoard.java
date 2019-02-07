@@ -1,3 +1,4 @@
-public class QueensBoard{
+public class QueenBoard{
   private int[][] board;
+
 }

@@ -13,7 +13,8 @@ public class QueenBoard{
     for (int i = 0; i < board.length; i++){
       for (int c = 0; c < board.length; c++){
         if (board[i][c] != -1){
-          ans += "_";
+          ans += board[i][c];
+          //ans += "_";
         }else{
           ans += "Q";
         }

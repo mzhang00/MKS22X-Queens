@@ -27,4 +27,7 @@ public class QueenBoard{
     }
     return ans;
   }
+  private boolean addQueen(int r, int c){
+    return true;
+  }
 }

@@ -28,19 +28,20 @@ public class QueenBoard{
     }
     return ans;
   }
-  private boolean addQueen(int r, int c){
+  public boolean addQueen(int r, int c){
     if (board[r][c] == 0){
       board[r][c] = -1;
     }else{
       return false;
     }
-    for (int i = r; i < board.length; i++){
+    //NEED TO ADD DIAGONALS :)
+    for (int i = r + 1; i < board.length; i++){
       board[i][c] = board[i][c] + 1;
     }
-    for (int j = r; j >= 0; j--){
+    for (int j = r - 1; j >= 0; j--){
       board[j][c] = board[j][c] + 1;
     }
-    for (int k = c; k < board.length; k++){
+    for (int k = c + 1; k < board.length; k++){
       board[r][k] = board[r][k] + 1;
     }
     return true;

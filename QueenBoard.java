@@ -1,5 +1,7 @@
 public class QueenBoard{
+  
   private int[][] board;
+
   public QueenBoard(int size){
     board = new int[size][size];
     for (int i = 0; i < board.length; i++){
@@ -8,6 +10,7 @@ public class QueenBoard{
       }
     }
   }
+  
   public String toString(){
     String ans = "";
     for (int i = 0; i < board.length; i++){
@@ -28,7 +31,8 @@ public class QueenBoard{
     }
     return ans;
   }
-  public boolean addQueen(int r, int c){
+  
+  private boolean addQueen(int r, int c){
     if (board[r][c] == 0){
       board[r][c] = -1;
     }else{
@@ -51,7 +55,8 @@ public class QueenBoard{
     }
     return true;
   }
-  public boolean removeQueen(int r, int c){
+
+  private boolean removeQueen(int r, int c){
     if (board[r][c] == -1){
       board[r][c] = 0;
     }else{
@@ -74,6 +79,7 @@ public class QueenBoard{
     }
     return true;
   }
+
   public boolean solve(){
     int count = 0;
     for (int i = 0; i < board.length; i++){
@@ -88,6 +94,7 @@ public class QueenBoard{
     }
     return solveHelper(board.length, 0, 0, 0, 0);
   }
+  
   private boolean solveHelper(int target, int partial, int x, int y, int count){
     if (target == partial){
       return true;
@@ -137,4 +144,9 @@ public class QueenBoard{
     }
     return solveHelper(target, partial, x, y, count);
   }
+
+  public int countSolutions(){
+    return 1;
+  }
+  
 }

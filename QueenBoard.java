@@ -13,8 +13,8 @@ public class QueenBoard{
     for (int i = 0; i < board.length; i++){
       for (int c = 0; c < board.length; c++){
         if (board[i][c] != -1){
-          ans += board[i][c];
-          //ans += "_";
+          //ans += board[i][c];
+          ans += "_";
         }else{
           ans += "Q";
         }
@@ -81,7 +81,27 @@ public class QueenBoard{
     if (target == partial){
       return true;
     }
-    
-    return true;
+    if (x == target - 1 && y == target - 1){
+      return target == partial;
+    }
+    if (addQueen(x, y)){
+      partial++;
+      y++;
+      x = 0;
+    }else{
+      if (x == target - 1){
+        x = 0;
+        y--;
+        for (int i = 0; x + i < target; i++){
+          if (removeQueen(x + 1, y)){
+            x = x + i + 1;
+            i = target;
+          }
+        }
+      }else{
+        x++; 
+      }
+    }
+    return solveHelper(target, partial, x, y);
   }
 }

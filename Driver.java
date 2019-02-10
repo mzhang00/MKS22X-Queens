@@ -1,7 +1,7 @@
 
 public class Driver{
   public static void main(String[] args){
-    QueenBoard q = new QueenBoard(4);
+    QueenBoard q = new QueenBoard(3);
     /*q.addQueen(1,1);
     System.out.println(q);
     System.out.println("-----------------------------------------------------------------");

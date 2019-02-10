@@ -75,6 +75,17 @@ public class QueenBoard{
     return true;
   }
   public boolean solve(){
+    int count = 0;
+    for (int i = 0; i < board.length; i++){
+      for (int c = 0; c < board.length; c++){
+        if (board[i][c] != 0){
+          count++;
+        }
+      }
+    }
+    if (count > 0){
+      throw new IllegalStateException();
+    }
     return solveHelper(board.length, 0, 0, 0);
   }
   private boolean solveHelper(int target, int partial, int x, int y){

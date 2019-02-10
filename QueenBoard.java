@@ -93,12 +93,12 @@ public class QueenBoard{
       return true;
     }
     if (x == target - 1 && y == target - 1){
-      if (count == target * target){
-        /*for (int i = 0; i < board.length; i++){
+      if (count == target * target || target == 2 || target == 3){
+        for (int i = 0; i < board.length; i++){
           for (int c = 0; c < board.length; c++){
             board[i][c] = 0;
           }
-        }*/
+        }
         return false;
       }else{
         count++;

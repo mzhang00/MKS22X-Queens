@@ -86,14 +86,23 @@ public class QueenBoard{
     if (count > 0){
       throw new IllegalStateException();
     }
-    return solveHelper(board.length, 0, 0, 0);
+    return solveHelper(board.length, 0, 0, 0, 0);
   }
-  private boolean solveHelper(int target, int partial, int x, int y){
+  private boolean solveHelper(int target, int partial, int x, int y, int count){
     if (target == partial){
       return true;
     }
     if (x == target - 1 && y == target - 1){
-      return target == partial;
+      if (count == target){
+        for (int i = 0; i < board.length; i++){
+          for (int c = 0; c < board.length; c++){
+            board[i][c] = 0;
+          }
+        }
+        return false;
+      }else{
+        count++;
+      }
     }
     if (addQueen(x, y)){
       partial++;
@@ -104,15 +113,28 @@ public class QueenBoard{
         x = 0;
         y--;
         for (int i = 0; x + i < target; i++){
-          if (removeQueen(x + 1, y)){
-            x = x + i + 1;
-            i = target;
+          if (removeQueen(x + i, y)){
+            if (x + i != target - 1){
+              x = x + i + 1;
+              partial--;
+              i = target;
+            }else{  
+              x = 0;
+              y--;
+              for (int c = 0; x + c < target; c++){
+                if (removeQueen(x + c, y)){
+                  x = x + c + 1;
+                  partial -= 2;
+                  c = target;
+                }
+              }
+            }
           }
         }
       }else{
         x++; 
       }
     }
-    return solveHelper(target, partial, x, y);
+    return solveHelper(target, partial, x, y, count);
   }
 }

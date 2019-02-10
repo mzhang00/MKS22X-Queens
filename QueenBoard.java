@@ -34,7 +34,6 @@ public class QueenBoard{
     }else{
       return false;
     }
-    //NEED TO ADD DIAGONALS :)
     for (int i = r + 1; i < board.length; i++){
       board[i][c] = board[i][c] + 1;
     }
@@ -43,6 +42,12 @@ public class QueenBoard{
     }
     for (int k = c + 1; k < board.length; k++){
       board[r][k] = board[r][k] + 1;
+    }
+    for (int l = 1; r + l < board.length && c + l < board.length; l++){
+      board[r + l][c + l] = board[r + l][c + l] + 1;
+    }
+    for (int m = 1; r - m >= 0 && c + m < board.length; m++){
+      board[r - m][c + m] = board[r - m][c + m] + 1;
     }
     return true;
   }

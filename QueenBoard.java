@@ -51,7 +51,7 @@ public class QueenBoard{
     }
     return true;
   }
-  private boolean removeQueen(int r, int c){
+  public boolean removeQueen(int r, int c){
     if (board[r][c] == -1){
       board[r][c] = 0;
     }else{
@@ -72,6 +72,16 @@ public class QueenBoard{
     for (int m = 1; r - m >= 0 && c + m < board.length; m++){
       board[r - m][c + m] = board[r - m][c + m] - 1;
     }
+    return true;
+  }
+  public boolean solve(){
+    return solveHelper(board.length, 0, 0, 0);
+  }
+  private boolean solveHelper(int target, int partial, int x, int y){
+    if (target == partial){
+      return true;
+    }
+    
     return true;
   }
 }

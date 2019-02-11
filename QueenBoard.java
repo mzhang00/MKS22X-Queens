@@ -164,8 +164,16 @@ public class QueenBoard{
     if (target == partial){
       result++;
     }
-    if (count == target * target){
-      return result;
+    if (target < 4){
+      if (count == target * target){
+        return result;
+      }
+    }else{
+      if (x == target - 1 && y == target - 1){
+        if (board[target - 1][0] == -1){
+          return result;
+        }
+      }
     }
     if (addQueen(x, y)){
       partial++;

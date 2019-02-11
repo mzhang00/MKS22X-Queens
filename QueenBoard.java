@@ -146,26 +146,67 @@ public class QueenBoard{
   }
 
   public int countSolutions(){
-    int count = 0;
+    int counter = 0;
     for (int i = 0; i < board.length; i++){
       for (int c = 0; c < board.length; c++){
         if (board[i][c] != 0){
-          count++;
+          counter++;
         }
       }
     }
-    if (count > 0){
+    if (counter > 0){
       throw new IllegalStateException();
     }
-    return 0;
+    return countHelper(board.length, 0, 0, 0, 0, 0);
   }
 
-  private int countHelper(int count){
-    if (solve()){
-      return countHelper(count + 1);
-    }else{
-      return count;
+  private int countHelper(int target, int partial, int x, int y, int count, int result){
+    if (target == partial){
+      result++;
     }
+    if (count == target * target){
+      return result;
+    }
+    if (addQueen(x, y)){
+      partial++;
+      y++;
+      x = 0;
+    }else{
+      if (x == target - 1){
+        x = 0;
+        y--;
+        for (int i = 0; x + i < target; i++){
+          if (removeQueen(x + i, y)){
+            if (x + i != target - 1){
+              x = x + i + 1;
+              partial--;
+              i = target;
+            }else{  
+              x = 0;
+              y--;
+              for (int c = 0; x + c < target; c++){
+                if (removeQueen(x + c, y)){
+                  x = x + c + 1;
+                  partial -= 2;
+                  c = target;
+                }
+              }
+            }
+          }
+        }
+      }else{
+        x++; 
+      }
+    }
+    return countHelper(target, partial, x, y, count + 1, result);
   }
-  
+
+  private int fact(int n){
+    int count = 1;
+    while (n > 0){
+      count = count * n;
+      n--;
+    }
+    return count;
+  }
 }

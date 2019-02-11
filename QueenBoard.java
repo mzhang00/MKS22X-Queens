@@ -146,7 +146,26 @@ public class QueenBoard{
   }
 
   public int countSolutions(){
-    return 1;
+    int count = 0;
+    for (int i = 0; i < board.length; i++){
+      for (int c = 0; c < board.length; c++){
+        if (board[i][c] != 0){
+          count++;
+        }
+      }
+    }
+    if (count > 0){
+      throw new IllegalStateException();
+    }
+    return 0;
+  }
+
+  private int countHelper(int count){
+    if (solve()){
+      return countHelper(count + 1);
+    }else{
+      return count;
+    }
   }
   
 }

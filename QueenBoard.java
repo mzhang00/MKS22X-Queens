@@ -182,23 +182,22 @@ public class QueenBoard{
     if (counter > 0){
       throw new IllegalStateException();
     }
-    return countR(0, 0);
+    return countR(0);
     //return countHelper(board.length, 0, 0, 0, 0, 0);
   }
 
-  private int countR(int col, int value){
+  private int countR(int col){
     if (col >= board.length){
-      return 0;
+      return 1;
     }
+    int value = 0;
     for (int r = 0; r < board.length; r++){
       if (addQueen(r, col)){
-        if (solveR(col + 1)){
-          return 0;
-        }
-        removeQueen(r, col);
+        value += countR(col + 1);
       }
+      removeQueen(r, col);
     }
-    return 0;
+    return value;
   }
 
   /*private int countHelper(int target, int partial, int x, int y, int count, int result){

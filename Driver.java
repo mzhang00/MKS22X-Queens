@@ -34,6 +34,7 @@ public class Driver{
       q = new QueenBoard(x);
       System.out.println(q.solve());
       System.out.println(q);
+      System.out.println("-----------------------------------------------------------------");
     }
   }
 }

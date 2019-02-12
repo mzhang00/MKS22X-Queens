@@ -92,7 +92,16 @@ public class QueenBoard{
     if (count > 0){
       throw new IllegalStateException();
     }
-    return solveR(0);
+    if (solveR(0)){
+      return true;
+    }else{  
+      for (int i = 0; i < board.length; i++){
+        for (int c = 0; c < board.length; c++){
+          board[i][c] = 0;
+        }
+      }
+      return false;
+    }
     //return solveHelper(board.length, 0, 0, 0, 0);
   }
   
@@ -111,7 +120,7 @@ public class QueenBoard{
     return false;
   }
   
-  private boolean solveHelper(int target, int partial, int x, int y, int count){
+  /*private boolean solveHelper(int target, int partial, int x, int y, int count){
     if (target == partial){
       return true;
     }
@@ -159,7 +168,7 @@ public class QueenBoard{
       }
     }
     return solveHelper(target, partial, x, y, count);
-  }
+  }*/
 
   public int countSolutions(){
     int counter = 0;
@@ -173,10 +182,26 @@ public class QueenBoard{
     if (counter > 0){
       throw new IllegalStateException();
     }
-    return countHelper(board.length, 0, 0, 0, 0, 0);
+    return countR(0, 0);
+    //return countHelper(board.length, 0, 0, 0, 0, 0);
   }
 
-  private int countHelper(int target, int partial, int x, int y, int count, int result){
+  private int countR(int col, int value){
+    if (col >= board.length){
+      return 0;
+    }
+    for (int r = 0; r < board.length; r++){
+      if (addQueen(r, col)){
+        if (solveR(col + 1)){
+          return 0;
+        }
+        removeQueen(r, col);
+      }
+    }
+    return 0;
+  }
+
+  /*private int countHelper(int target, int partial, int x, int y, int count, int result){
     if (target == partial){
       result++;
     }
@@ -223,5 +248,5 @@ public class QueenBoard{
       }
     }
     return countHelper(target, partial, x, y, count + 1, result);
-  }
+  }*/
 }

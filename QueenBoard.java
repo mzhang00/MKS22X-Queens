@@ -95,6 +95,21 @@ public class QueenBoard{
     return solveHelper(board.length, 0, 0, 0, 0);
   }
   
+  private int solveR(int col){
+    if (col >= board.length){
+      return true;
+    }
+    for (int r = 0; r < board.length; r++){
+      if (addQueen(r, col)){
+        if (solveR(col + 1)){
+          return true;
+        }
+        removeQueen(r, col);
+      }
+    }
+    return false;
+  }
+  
   private boolean solveHelper(int target, int partial, int x, int y, int count){
     if (target == partial){
       return true;
@@ -207,14 +222,5 @@ public class QueenBoard{
       }
     }
     return countHelper(target, partial, x, y, count + 1, result);
-  }
-
-  private int fact(int n){
-    int count = 1;
-    while (n > 0){
-      count = count * n;
-      n--;
-    }
-    return count;
   }
 }

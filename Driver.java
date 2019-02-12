@@ -1,8 +1,12 @@
 
 public class Driver{
   public static void main(String[] args){
-    int x = 3;
-    QueenBoard q = new QueenBoard(x);
+    
+    int x;
+    QueenBoard q;
+    //q = new QueenBoard(x);
+    
+    
     /*q.addQueen(1,1);
     System.out.println(q);
     System.out.println("-----------------------------------------------------------------");
@@ -18,9 +22,18 @@ public class Driver{
     q.removeQueen(1,1);
     System.out.println(q);*/
     //System.out.println(q);
-    System.out.println(q.solve());
-    System.out.println(q);
-    q = new QueenBoard(x);
-    System.out.println(q.countSolutions());
+    
+    //System.out.println(q.solve());
+    //System.out.println(q);
+    
+    //q = new QueenBoard(x);
+    //System.out.println(q.countSolutions());
+    
+    for (int i = 0; i <= 14; i++){
+      x = i;
+      q = new QueenBoard(x);
+      System.out.println(q.solve());
+      System.out.println(q);
+    }
   }
 }

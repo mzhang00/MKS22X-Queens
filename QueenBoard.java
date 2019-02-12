@@ -92,10 +92,11 @@ public class QueenBoard{
     if (count > 0){
       throw new IllegalStateException();
     }
-    return solveHelper(board.length, 0, 0, 0, 0);
+    return solveR(0);
+    //return solveHelper(board.length, 0, 0, 0, 0);
   }
   
-  private int solveR(int col){
+  private boolean solveR(int col){
     if (col >= board.length){
       return true;
     }
